@@ -1,14 +1,8 @@
 #!/bin/bash
 
-# --------------------- BASIC TOOLS ---------------------
-
 show_info() {
     zenity --info --title="🖥️ System Info" --width=550 --height=350 \
         --text="<span font='12'>OS: $(uname -o)\nKernel: $(uname -r)\nArch: $(uname -m)\nCPU: $(lscpu | awk -F':' '/Model name/ {print \$2}' | xargs)\nRAM: $(free -h | awk '/Mem/{print \$2}')\nDisk Free (/): $(df -h / | awk 'NR==2{print \$4}')</span>"
-}
-
-speed_test() {
-    zenity --info --title="🌐 Speed Test" --text="$(speedtest-cli --simple 2>&1)"
 }
 
 media_player() {
@@ -36,8 +30,7 @@ pdf_viewer() {
     [ -n "$file" ] && xdg-open "$file"
 }
 
-# --------------------- CALCULATOR ---------------------
-
+#calculator
 if [ ! -f ./calc_gui ]; then
     cat > calc_gui.c <<'EOF'
 #include <stdio.h>
@@ -89,8 +82,7 @@ fi
 
 calculator() { ./calc_gui; }
 
-# --------------------- PROCESS MANAGER ---------------------
-
+#process manager
 if [ ! -f ./proc_manager ]; then
     cat > proc_manager.c <<'EOF'
 #include <stdio.h>
@@ -121,9 +113,7 @@ fi
 
 process_manager() { ./proc_manager; }
 
-# --------------------- SCHEDULING SIMULATOR ---------------------
-# (kept unchanged)
-
+#scheduling simulator
 scheduling_simulator() {
     algo=$(zenity --list --title="🧪 Process Scheduling" --column="Algorithm" \
            "FCFS" "SJF" "PRIORITY" "ROUND ROBIN") || return
@@ -161,14 +151,64 @@ scheduling_simulator() {
     fi
 }
 
-# --------------------- MAIN MENU ---------------------
 
+service_manager() {
+    # Get list of active services
+    srv=$(systemctl list-units --type=service --state=running --no-pager --plain | \
+          awk '{print $1}' | grep ".service" | head -n 50 | \
+          zenity --list --title="📦 Service Manager" --text="Select a running service to manage:" \
+          --column="Service Name" --height=400 --width=500)
+    
+    [ -z "$srv" ] && return
+    
+    action=$(zenity --list --title="Action for $srv" --column="Action" \
+             "Status" "Restart" "Stop" --height=250)
+    
+    [ -z "$action" ] && return
+    
+    case "$action" in
+        "Status") 
+            gnome-terminal -- bash -c "systemctl status $srv; echo; read -p 'Press Enter to exit...'" ;;
+        "Restart") 
+            gnome-terminal -- bash -c "sudo systemctl restart $srv && echo '✅ Restarted $srv' || echo '❌ Failed'; read -p 'Press Enter...'" ;;
+        "Stop") 
+            gnome-terminal -- bash -c "sudo systemctl stop $srv && echo '✅ Stopped $srv' || echo '❌ Failed'; read -p 'Press Enter...'" ;;
+    esac
+}
+
+network_monitor() {
+    gnome-terminal --title="📊 Network Monitor" -- bash -c '
+        echo "Monitoring Network Interface (Active)..."
+        # Find primary interface
+        IFACE=$(ip route | awk "/^default/ {print \$5}" | head -1)
+        [ -z "$IFACE" ] && IFACE=$(ls /sys/class/net | head -1)
+        
+        echo "Interface: $IFACE"
+        echo "Press Ctrl+C to exit."
+        echo ""
+        
+        while true; do
+            R1=$(cat /sys/class/net/$IFACE/statistics/rx_bytes)
+            T1=$(cat /sys/class/net/$IFACE/statistics/tx_bytes)
+            sleep 1
+            R2=$(cat /sys/class/net/$IFACE/statistics/rx_bytes)
+            T2=$(cat /sys/class/net/$IFACE/statistics/tx_bytes)
+            
+            RKB=$(( (R2 - R1) / 1024 ))
+            TKB=$(( (T2 - T1) / 1024 ))
+            
+            echo -ne "\r⬇ Download: ${RKB} KB/s  |  ⬆ Upload: ${TKB} KB/s   "
+        done
+    '
+}
+
+
+#menu
 while true; do
     tool=$(zenity --list --title="🛠️ Linux Utility Toolkit" \
         --width=720 --height=600 \
         --column="Tool" --column="Description" \
         "System Info" "🖥️ View OS, CPU, RAM, disk info" \
-        "Speed Test" "🌐 Check internet speed" \
         "Media Player" "🎵🎬 Play audio/video files" \
         "File Search" "🔎 Search files by name/pattern" \
         "System Update" "⬆️ Update system packages" \
@@ -176,11 +216,12 @@ while true; do
         "Calculator" "🧮 Perform arithmetic operations" \
         "Process Manager" "⚙️ View & kill processes" \
         "Scheduling Simulator" "🧪 FCFS / SJF / Priority / RR" \
+        "Service Manager" "📦 Manage system services" \
+        "Network Monitor" "📊 Monitor data usage" \
         --ok-label="Run" --cancel-label="Exit") || break
 
     case "$tool" in
         "System Info") show_info ;;
-        "Speed Test") speed_test ;;
         "Media Player") media_player ;;
         "File Search") file_search ;;
         "System Update") system_update ;;
@@ -188,9 +229,11 @@ while true; do
         "Calculator") calculator ;;
         "Process Manager") process_manager ;;
         "Scheduling Simulator") scheduling_simulator ;;
+        "Service Manager") service_manager ;;
+        "Network Monitor") network_monitor ;;
         *) break ;;
     esac
 done
 
-echo -e "\nThank you for using the Linux Utility Toolkit! Goodbye! 👋"
+echo -e "\nThank you for using the Linux Utility Toolkit! Goodbye!"
 
