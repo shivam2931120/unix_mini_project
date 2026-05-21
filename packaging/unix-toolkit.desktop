@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+Name=Linux Utility Toolkit
+Comment=GUI launcher for Linux system utilities
+Exec=unix-toolkit
+Icon=utilities-terminal
+Terminal=false
+Categories=Utility;
+Keywords=linux;unix;system;process;scheduler;network;

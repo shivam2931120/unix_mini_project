@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+Name=Unix Toolkit Launcher
+Comment=Launch the host-installed Linux Utility Toolkit
+Exec=unix-toolkit-flatpak
+Icon=io.github.shivam2931120.UnixToolkitLauncher
+Terminal=false
+Categories=Utility;
+Keywords=linux;unix;system;process;scheduler;network;

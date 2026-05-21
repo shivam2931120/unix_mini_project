@@ -1,0 +1,9 @@
+.git
+dist
+calc_gui
+proc_manager
+sched_sim
+*.deb
+*.snap
+*.vsix
+*.zip

@@ -1,0 +1,25 @@
+.TH UNIX-TOOLKIT 1 "May 2026" "unix-utility-suite 1.0.0" "User Commands"
+.SH NAME
+unix-toolkit \- GUI launcher for Linux system utilities
+.SH SYNOPSIS
+.B unix-toolkit
+.SH DESCRIPTION
+.B unix-toolkit
+opens a Zenity-based launcher for common Linux utility tasks.
+It includes system information, media launching, file search,
+Debian/Ubuntu package updates, PDF opening, a calculator, process
+termination, CPU scheduling simulation, systemd service management,
+and network throughput monitoring.
+.SH REQUIREMENTS
+The toolkit requires a graphical Linux session with Zenity.
+Some tools also use xdg-open, systemctl, sudo, apt, and a terminal
+emulator such as gnome-terminal or x-terminal-emulator.
+.SH FILES
+.TP
+.I /usr/bin/unix-toolkit
+Main launcher script.
+.TP
+.I /usr/lib/unix-utility-suite/
+Compiled helper executables.
+.SH AUTHOR
+Shivam

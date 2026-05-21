@@ -1,0 +1,45 @@
+{
+  "name": "unix-utility-suite",
+  "displayName": "Unix Utility Suite Launcher",
+  "description": "Launch the installed Linux Utility Toolkit from Visual Studio Code.",
+  "version": "1.0.0",
+  "publisher": "shivam2931120",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/shivam2931120/unix_mini_project.git"
+  },
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onCommand:unixUtilitySuite.launch",
+    "onCommand:unixUtilitySuite.checkInstall"
+  ],
+  "main": "./extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "unixUtilitySuite.launch",
+        "title": "Unix Utility Suite: Launch Toolkit"
+      },
+      {
+        "command": "unixUtilitySuite.checkInstall",
+        "title": "Unix Utility Suite: Check Install"
+      }
+    ],
+    "configuration": {
+      "title": "Unix Utility Suite",
+      "properties": {
+        "unixUtilitySuite.executablePath": {
+          "type": "string",
+          "default": "unix-toolkit",
+          "description": "Path to the installed unix-toolkit command."
+        }
+      }
+    }
+  }
+}

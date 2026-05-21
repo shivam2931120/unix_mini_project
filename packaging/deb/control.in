@@ -1,0 +1,15 @@
+Package: unix-utility-suite
+Version: @VERSION@
+Section: utils
+Priority: optional
+Architecture: @ARCH@
+Maintainer: Shivam <shivam2931120@users.noreply.github.com>
+Homepage: https://github.com/shivam2931120/unix_mini_project
+Depends: bash, zenity, xdg-utils, procps, coreutils, findutils, util-linux, iproute2, sudo, systemd, gnome-terminal | x-terminal-emulator
+Recommends: mpv | vlc
+Description: GUI launcher for Linux system utilities
+ Unix Utility Suite is a Zenity-based desktop launcher for common
+ Linux utility tasks, including system information, media launching,
+ file search, package updates, PDF opening, arithmetic, process
+ termination, scheduling simulation, service management, and network
+ throughput monitoring.

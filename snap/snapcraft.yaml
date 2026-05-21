@@ -1,0 +1,37 @@
+name: unix-utility-suite
+base: core24
+version: '1.0.0'
+summary: GUI launcher for Linux system utilities
+description: |
+  Unix Utility Suite is a Zenity-based desktop launcher for common Linux
+  utility tasks, including system information, media launching, file search,
+  package updates, PDF opening, arithmetic, process termination, scheduling
+  simulation, service management, and network throughput monitoring.
+
+grade: stable
+confinement: classic
+
+apps:
+  unix-toolkit:
+    command: usr/bin/unix-toolkit
+    desktop: usr/share/applications/unix-toolkit.desktop
+
+parts:
+  toolkit:
+    plugin: make
+    source: .
+    make-parameters:
+      - PREFIX=/usr
+    build-packages:
+      - gcc
+      - make
+    stage-packages:
+      - bash
+      - zenity
+      - xdg-utils
+      - procps
+      - coreutils
+      - findutils
+      - util-linux
+      - iproute2
+      - sudo

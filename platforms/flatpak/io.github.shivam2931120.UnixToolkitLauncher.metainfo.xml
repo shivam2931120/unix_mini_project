@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="desktop-application">
+  <id>io.github.shivam2931120.UnixToolkitLauncher</id>
+  <name>Unix Toolkit Launcher</name>
+  <summary>Launch the host-installed Linux Utility Toolkit</summary>
+  <developer id="io.github.shivam2931120">
+    <name>Shivam</name>
+  </developer>
+  <metadata_license>MIT</metadata_license>
+  <project_license>MIT</project_license>
+  <description>
+    <p>
+      Unix Toolkit Launcher opens the host-installed Unix Utility Suite command
+      from a Flatpak application entry.
+    </p>
+    <p>
+      This wrapper requires the Debian package or another system installation
+      that provides the unix-toolkit command on the host.
+    </p>
+  </description>
+  <launchable type="desktop-id">io.github.shivam2931120.UnixToolkitLauncher.desktop</launchable>
+  <url type="homepage">https://github.com/shivam2931120/unix_mini_project</url>
+  <releases>
+    <release version="1.0.0" date="2026-05-21"/>
+  </releases>
+  <content_rating type="oars-1.1"/>
+</component>

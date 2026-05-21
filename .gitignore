@@ -1,0 +1,11 @@
+calc_gui
+proc_manager
+sched_sim
+dist/
+.flatpak-builder/
+*.o
+*.deb
+*.snap
+*.vsix
+*.zip
+*.flatpak
