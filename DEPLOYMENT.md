@@ -207,7 +207,13 @@ Run this from your local terminal to complete sudo/account-gated installs with p
 make owner-finalize
 ```
 
-The helper verifies release artifacts, asks before system installs, and prints the store-publishing commands when invoked through the Make target.
+To attempt supported CLI publishing after setting account credentials:
+
+```bash
+scripts/finalize-owner-deployment.sh --publish-now
+```
+
+The helper verifies release artifacts, asks before system installs, checks publisher readiness, and prints the store-publishing commands when invoked through the Make target.
 
 ## 11. Store Credentials Still Required
 

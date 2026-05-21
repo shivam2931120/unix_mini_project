@@ -15,18 +15,20 @@ GNOME_ZIP="$DIST_DIR/unix-toolkit-launcher@shivam2931120.github.io.shell-extensi
 FLATPAK="$DIST_DIR/io.github.shivam2931120.UnixToolkitLauncher.flatpak"
 
 RUN_PUBLISH=0
+RUN_PUBLISH_NOW=0
 ASSUME_YES=0
 
 usage() {
     cat <<USAGE
-Usage: $0 [--yes] [--publish]
+Usage: $0 [--yes] [--publish] [--publish-now]
 
 Installs and verifies the release artifacts that require the owner's sudo
 password or desktop account context.
 
 Options:
   --yes      Run local install steps without prompting.
-  --publish  Also print/check external store publishing commands.
+  --publish      Print/check external store publishing commands.
+  --publish-now  Attempt supported CLI publishing when credentials are present.
 
 This script does not store passwords or tokens. Marketplace submissions still
 require your Snapcraft, Visual Studio Marketplace, GNOME Extensions, or Flathub
@@ -41,6 +43,10 @@ for arg in "$@"; do
             ;;
         --publish)
             RUN_PUBLISH=1
+            ;;
+        --publish-now)
+            RUN_PUBLISH=1
+            RUN_PUBLISH_NOW=1
             ;;
         -h|--help)
             usage
@@ -162,7 +168,34 @@ install_gnome_extension() {
     fi
 }
 
+snapcraft_status() {
+    if ! command -v snapcraft >/dev/null 2>&1; then
+        echo "missing"
+        return
+    fi
+
+    if snapcraft whoami >/dev/null 2>&1; then
+        echo "logged-in"
+    else
+        echo "not-logged-in"
+    fi
+}
+
+vsce_status() {
+    if [ -n "${VSCE_PAT:-}" ]; then
+        echo "token-present"
+    else
+        echo "missing-VSCE_PAT"
+    fi
+}
+
 publish_notes() {
+    local snap_status
+    local vsce_ready
+
+    snap_status=$(snapcraft_status)
+    vsce_ready=$(vsce_status)
+
     cat <<NOTES
 
 ==> Store publishing checklist
@@ -170,12 +203,12 @@ publish_notes() {
 GitHub release is already the primary public distribution:
   https://github.com/shivam2931120/unix_mini_project/releases/tag/v1.0.0
 
-Snap Store:
+Snap Store readiness: $snap_status
   snapcraft login
   snapcraft upload --release=stable "$SNAP"
   Note: classic confinement requires Snap Store review.
 
-VS Code Marketplace:
+VS Code Marketplace readiness: $vsce_ready
   cd "$ROOT_DIR/platforms/vscode"
   npx @vscode/vsce publish --packagePath "$VSIX"
   Requires a publisher account and VSCE_PAT.
@@ -188,6 +221,42 @@ Flathub:
   release use. Flathub submission likely needs redesign because the app manages
   host system state.
 NOTES
+}
+
+publish_snap_if_ready() {
+    if [ "$(snapcraft_status)" != "logged-in" ]; then
+        echo "Snap Store publish skipped: install snapcraft and run 'snapcraft login' first."
+        return
+    fi
+
+    if ask "Upload the Snap artifact to the stable channel now?"; then
+        run_optional "Publishing Snap" snapcraft upload --release=stable "$SNAP"
+    else
+        echo "Skipped Snap Store publish."
+    fi
+}
+
+publish_vscode_if_ready() {
+    if [ -z "${VSCE_PAT:-}" ]; then
+        echo "VS Code publish skipped: set VSCE_PAT first."
+        return
+    fi
+
+    if ask "Publish the VS Code extension to Marketplace now using VSCE_PAT?"; then
+        run_optional "Publishing VS Code extension" npx @vscode/vsce publish --packagePath "$VSIX" --pat "$VSCE_PAT"
+    else
+        echo "Skipped VS Code Marketplace publish."
+    fi
+}
+
+publish_if_requested() {
+    if [ "$RUN_PUBLISH_NOW" -ne 1 ]; then
+        return
+    fi
+
+    publish_snap_if_ready
+    publish_vscode_if_ready
+    echo "GNOME Extensions and Flathub remain manual review/submission flows."
 }
 
 cd "$ROOT_DIR"
@@ -205,6 +274,8 @@ install_gnome_extension
 if [ "$RUN_PUBLISH" -eq 1 ]; then
     publish_notes
 fi
+
+publish_if_requested
 
 echo
 echo "Owner finalization script finished."

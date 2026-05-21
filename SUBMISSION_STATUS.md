@@ -75,5 +75,11 @@ Run the guided owner-side finalization helper:
 make owner-finalize
 ```
 
+To attempt supported CLI publishing after setting account credentials:
+
+```bash
+scripts/finalize-owner-deployment.sh --publish-now
+```
+
 Store submissions must be completed while logged into the relevant publisher
 accounts.

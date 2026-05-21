@@ -111,6 +111,12 @@ To finish the owner-side installs with prompts, run:
 make owner-finalize
 ```
 
+To attempt supported CLI publishing after setting account credentials:
+
+```bash
+scripts/finalize-owner-deployment.sh --publish-now
+```
+
 
 ## Project Layout
 
