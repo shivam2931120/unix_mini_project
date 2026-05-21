@@ -199,7 +199,17 @@ make docker-build
 The Docker image is for reproducible build/test verification and scheduler
 demo output. It is not the primary GUI distribution format.
 
-## 10. Store Credentials Still Required
+## 10. Guided Owner Finalization
+
+Run this from your local terminal to complete sudo/account-gated installs with prompts:
+
+```bash
+make owner-finalize
+```
+
+The helper verifies release artifacts, asks before system installs, and prints the store-publishing commands when invoked through the Make target.
+
+## 11. Store Credentials Still Required
 
 These actions cannot be completed from this repository alone:
 

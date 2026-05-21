@@ -69,5 +69,11 @@ Then log out and back in, or restart GNOME Shell where supported, and enable:
 gnome-extensions enable unix-toolkit-launcher@shivam2931120.github.io
 ```
 
+Run the guided owner-side finalization helper:
+
+```bash
+make owner-finalize
+```
+
 Store submissions must be completed while logged into the relevant publisher
 accounts.

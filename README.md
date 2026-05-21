@@ -105,6 +105,13 @@ make docker-build
 More deployment and submission steps are in [DEPLOYMENT.md](DEPLOYMENT.md).
 Current release status is tracked in [SUBMISSION_STATUS.md](SUBMISSION_STATUS.md).
 
+To finish the owner-side installs with prompts, run:
+
+```bash
+make owner-finalize
+```
+
+
 ## Project Layout
 
 ```text

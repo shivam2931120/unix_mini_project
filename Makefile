@@ -13,7 +13,7 @@ DEST_BINDIR := $(DESTDIR)$(PREFIX)/bin
 DEST_LIBEXECDIR := $(DESTDIR)$(PREFIX)/lib/$(PROJECT)
 DEST_DATADIR := $(DESTDIR)$(PREFIX)/share
 
-.PHONY: all clean install uninstall package-deb package-snap package-gnome-extension package-vscode-extension package-flatpak-bundle package-submission-artifacts test test-deb-install docker-build
+.PHONY: all clean install uninstall package-deb package-snap package-gnome-extension package-vscode-extension package-flatpak-bundle package-submission-artifacts owner-finalize test test-deb-install docker-build
 
 all: $(BINS)
 
@@ -93,6 +93,9 @@ package-flatpak-bundle:
 	flatpak build-bundle dist/flatpak-repo dist/$(FLATPAK_ID).flatpak $(FLATPAK_ID)
 
 package-submission-artifacts: package-deb package-snap package-gnome-extension package-vscode-extension package-flatpak-bundle
+
+owner-finalize:
+	scripts/finalize-owner-deployment.sh --publish
 
 test-deb-install: package-deb
 	scripts/test-deb-install.sh dist/$(PROJECT)_$(VERSION)_$(DEB_ARCH).deb
