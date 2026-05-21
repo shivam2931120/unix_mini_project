@@ -103,6 +103,7 @@ make docker-build
 ```
 
 More deployment and submission steps are in [DEPLOYMENT.md](DEPLOYMENT.md).
+Current release status is tracked in [SUBMISSION_STATUS.md](SUBMISSION_STATUS.md).
 
 ## Project Layout
 
