@@ -63,7 +63,7 @@ package-snap: all
 	rm -rf dist/snap-root
 	$(MAKE) install DESTDIR=$(CURDIR)/dist/snap-root PREFIX=/usr
 	install -d dist/snap-root/meta
-	sed -e 's/@VERSION@/$(VERSION)/g' packaging/snap.yaml.in > dist/snap-root/meta/snap.yaml
+	sed -e 's/@VERSION@/$(VERSION)/g' -e 's/@ARCH@/$(DEB_ARCH)/g' packaging/snap.yaml.in > dist/snap-root/meta/snap.yaml
 	snap pack --check-skeleton dist/snap-root
 	snap pack --compression=xz --filename=$(PROJECT)_$(VERSION)_$(DEB_ARCH).snap dist/snap-root dist
 

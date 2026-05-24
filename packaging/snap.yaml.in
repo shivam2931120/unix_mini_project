@@ -7,9 +7,10 @@ description: |
   package updates, PDF opening, arithmetic, process termination, scheduling
   simulation, service management, and network throughput monitoring.
 base: core24
+architectures:
+  - '@ARCH@'
 grade: stable
 confinement: classic
 apps:
   unix-toolkit:
     command: usr/bin/unix-toolkit
-    desktop: usr/share/applications/unix-toolkit.desktop
