@@ -5,14 +5,14 @@ Last audited: 2026-05-21
 ## Completed
 
 - Source pushed to `main`.
-- Release tag created: `v1.0.0`.
+- Release tag created: `v1.1.0`.
 - GitHub release published:
-  https://github.com/shivam2931120/unix_mini_project/releases/tag/v1.0.0
+  https://github.com/shivam2931120/unix_mini_project/releases/tag/v1.1.0
 - GitHub release assets uploaded:
-  - `unix-utility-suite_1.0.0_amd64.deb`
-  - `unix-utility-suite_1.0.0_amd64.snap`
+  - `unix-utility-suite_1.1.0_amd64.deb`
+  - `unix-utility-suite_1.1.0_amd64.snap`
   - `unix-toolkit-launcher@shivam2931120.github.io.shell-extension.zip`
-  - `unix-utility-suite-vscode-1.0.0.vsix`
+  - `unix-utility-suite-vscode-1.1.0.vsix`
   - `io.github.shivam2931120.UnixToolkitLauncher.flatpak`
 - GitHub Actions release workflow passed.
 - `.deb` install-path test passed with `make test-deb-install`.
@@ -35,20 +35,20 @@ Last audited: 2026-05-21
 Real Debian package install:
 
 ```bash
-sudo apt install ./dist/unix-utility-suite_1.0.0_amd64.deb
+sudo apt install ./dist/unix-utility-suite_1.1.0_amd64.deb
 unix-toolkit
 ```
 
 Local Snap install:
 
 ```bash
-sudo snap install --dangerous --classic ./dist/unix-utility-suite_1.0.0_amd64.snap
+sudo snap install --dangerous --classic ./dist/unix-utility-suite_1.1.0_amd64.snap
 ```
 
 Local VS Code install:
 
 ```bash
-code --install-extension ./dist/unix-utility-suite-vscode-1.0.0.vsix --force
+code --install-extension ./dist/unix-utility-suite-vscode-1.1.0.vsix --force
 ```
 
 Local Flatpak install:

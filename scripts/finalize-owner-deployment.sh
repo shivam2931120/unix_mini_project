@@ -3,7 +3,7 @@
 set -euo pipefail
 
 PROJECT="unix-utility-suite"
-VERSION="1.0.0"
+VERSION="1.1.0"
 ARCH="$(dpkg --print-architecture 2>/dev/null || uname -m)"
 ROOT_DIR="$(CDPATH= cd -- "$(dirname -- "${BASH_SOURCE[0]}")/.." && pwd)"
 DIST_DIR="$ROOT_DIR/dist"
@@ -201,7 +201,7 @@ publish_notes() {
 ==> Store publishing checklist
 
 GitHub release is already the primary public distribution:
-  https://github.com/shivam2931120/unix_mini_project/releases/tag/v1.0.0
+  https://github.com/shivam2931120/unix_mini_project/releases/tag/v1.1.0
 
 Snap Store readiness: $snap_status
   snapcraft login

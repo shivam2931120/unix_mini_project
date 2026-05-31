@@ -8,7 +8,7 @@ Code.
 Install Unix Utility Suite first:
 
 ```bash
-sudo apt install ./unix-utility-suite_1.0.0_amd64.deb
+sudo apt install ./unix-utility-suite_1.1.0_amd64.deb
 ```
 
 Then run the command:

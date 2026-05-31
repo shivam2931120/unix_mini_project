@@ -2,7 +2,7 @@
   "name": "unix-utility-suite",
   "displayName": "Unix Utility Suite Launcher",
   "description": "Launch the installed Linux Utility Toolkit from Visual Studio Code.",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "publisher": "shivam2931120",
   "license": "MIT",
   "repository": {

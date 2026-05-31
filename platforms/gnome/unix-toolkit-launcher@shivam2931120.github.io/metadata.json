@@ -4,5 +4,6 @@
   "description": "Top bar launcher for the installed Linux Utility Toolkit command.",
   "shell-version": ["45", "46", "47", "48", "49", "50"],
   "url": "https://github.com/shivam2931120/unix_mini_project",
-  "version": 1
+  "settings-schema": "org.gnome.shell.extensions.unix-toolkit-launcher",
+  "version": 2
 }

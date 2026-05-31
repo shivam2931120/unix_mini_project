@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schemalist>
+  <schema id="org.gnome.shell.extensions.unix-toolkit-launcher" path="/org/gnome/shell/extensions/unix-toolkit-launcher/">
+    <key name="show-full-launcher" type="b">
+      <default>true</default>
+      <summary>Show the full toolkit launcher menu item</summary>
+    </key>
+    <key name="show-system-info" type="b">
+      <default>true</default>
+      <summary>Show the system info menu item</summary>
+    </key>
+    <key name="show-file-search" type="b">
+      <default>true</default>
+      <summary>Show the file search menu item</summary>
+    </key>
+    <key name="show-process-manager" type="b">
+      <default>true</default>
+      <summary>Show the process manager menu item</summary>
+    </key>
+    <key name="show-network-monitor" type="b">
+      <default>true</default>
+      <summary>Show the network monitor menu item</summary>
+    </key>
+    <key name="show-scheduling-simulator" type="b">
+      <default>true</default>
+      <summary>Show the scheduling simulator menu item</summary>
+    </key>
+    <key name="enable-shortcut" type="b">
+      <default>true</default>
+      <summary>Enable the global launcher shortcut</summary>
+    </key>
+    <key name="launcher-shortcut" type="as">
+      <default>['&lt;Super&gt;&lt;Alt&gt;u']</default>
+      <summary>Keyboard shortcut for opening the full toolkit launcher</summary>
+    </key>
+  </schema>
+</schemalist>

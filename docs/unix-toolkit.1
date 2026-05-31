@@ -1,8 +1,9 @@
-.TH UNIX-TOOLKIT 1 "May 2026" "unix-utility-suite 1.0.0" "User Commands"
+.TH UNIX-TOOLKIT 1 "May 2026" "unix-utility-suite 1.1.0" "User Commands"
 .SH NAME
 unix-toolkit \- GUI launcher for Linux system utilities
 .SH SYNOPSIS
 .B unix-toolkit
+.RI [ OPTION ]
 .SH DESCRIPTION
 .B unix-toolkit
 opens a Zenity-based launcher for common Linux utility tasks.
@@ -10,6 +11,46 @@ It includes system information, media launching, file search,
 Debian/Ubuntu package updates, PDF opening, a calculator, process
 termination, CPU scheduling simulation, systemd service management,
 and network throughput monitoring.
+.SH OPTIONS
+.TP
+.B --launcher
+Open the full toolkit launcher.
+.TP
+.B --system-info
+Show system information.
+.TP
+.B --media-player
+Open a media file.
+.TP
+.B --file-search
+Search files by name or pattern.
+.TP
+.B --system-update
+Run Debian/Ubuntu package updates.
+.TP
+.B --pdf-viewer
+Open a PDF file.
+.TP
+.B --calculator
+Open the calculator helper.
+.TP
+.B --process-manager
+Open the process manager helper.
+.TP
+.B --scheduling-simulator
+Open the CPU scheduling simulator.
+.TP
+.B --service-manager
+Manage running systemd services.
+.TP
+.B --network-monitor
+Monitor network throughput.
+.TP
+.B --version
+Print version information.
+.TP
+.B --help
+Show help text.
 .SH REQUIREMENTS
 The toolkit requires a graphical Linux session with Zenity.
 Some tools also use xdg-open, systemctl, sudo, apt, and a terminal

@@ -75,7 +75,7 @@ sudo make uninstall
 
 ```bash
 make package-deb
-sudo apt install ./dist/unix-utility-suite_1.0.0_$(dpkg --print-architecture).deb
+sudo apt install ./dist/unix-utility-suite_1.1.0_$(dpkg --print-architecture).deb
 unix-toolkit
 ```
 
@@ -90,10 +90,10 @@ Flatpak app `org.flatpak.Builder`.
 
 This creates:
 
-- Debian package: `dist/unix-utility-suite_1.0.0_<arch>.deb`
-- Snap package: `dist/unix-utility-suite_1.0.0_<arch>.snap`
+- Debian package: `dist/unix-utility-suite_1.1.0_<arch>.deb`
+- Snap package: `dist/unix-utility-suite_1.1.0_<arch>.snap`
 - GNOME Shell extension zip: `dist/unix-toolkit-launcher@shivam2931120.github.io.shell-extension.zip`
-- VS Code extension package: `dist/unix-utility-suite-vscode-1.0.0.vsix`
+- VS Code extension package: `dist/unix-utility-suite-vscode-1.1.0.vsix`
 - Flatpak bundle: `dist/io.github.shivam2931120.UnixToolkitLauncher.flatpak`
 
 Optional targets:

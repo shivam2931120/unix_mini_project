@@ -4,6 +4,7 @@ set -u
 
 APP_NAME="Linux Utility Toolkit"
 PROJECT_NAME="unix-utility-suite"
+APP_VERSION="1.1.0"
 
 SCRIPT_DIR="$(CDPATH= cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
 LIBEXEC_DIR="${UNIX_TOOLKIT_LIBEXEC:-}"
@@ -291,6 +292,52 @@ network_monitor() {
     '
 }
 
+print_usage() {
+    cat <<EOF
+Usage: unix-toolkit [OPTION]
+
+Launch Linux Utility Toolkit or run a specific tool.
+
+Options:
+  --launcher              Open the full toolkit launcher
+  --system-info           View OS, CPU, RAM, and disk info
+  --media-player          Play audio or video files
+  --file-search           Search files by name or pattern
+  --system-update         Update Debian/Ubuntu packages
+  --pdf-viewer            Open PDF files
+  --calculator            Perform arithmetic operations
+  --process-manager       View and terminate processes
+  --scheduling-simulator  Run process scheduling simulations
+  --service-manager       Manage running systemd services
+  --network-monitor       Monitor network throughput
+  --version               Print version information
+  --help                  Show this help text
+EOF
+}
+
+run_tool_action() {
+    local option=$1
+
+    case "$option" in
+        --launcher) main ;;
+        --system-info) show_info ;;
+        --media-player) media_player ;;
+        --file-search) file_search ;;
+        --system-update) system_update ;;
+        --pdf-viewer) pdf_viewer ;;
+        --calculator) calculator ;;
+        --process-manager) process_manager ;;
+        --scheduling-simulator) scheduling_simulator ;;
+        --service-manager) service_manager ;;
+        --network-monitor) network_monitor ;;
+        *)
+            notify_error "Unknown option: $option"
+            print_usage >&2
+            return 2
+            ;;
+    esac
+}
+
 main() {
     local tool
 
@@ -328,4 +375,25 @@ main() {
     done
 }
 
-main "$@"
+if [ "$#" -eq 0 ]; then
+    main
+    exit $?
+fi
+
+case "$1" in
+    --help|-h)
+        print_usage
+        ;;
+    --version)
+        printf '%s %s\n' "$PROJECT_NAME" "$APP_VERSION"
+        ;;
+    --launcher|--system-info|--media-player|--file-search|--system-update|--pdf-viewer|--calculator|--process-manager|--scheduling-simulator|--service-manager|--network-monitor)
+        ensure_zenity
+        run_tool_action "$1"
+        ;;
+    *)
+        notify_error "Unknown option: $1"
+        print_usage >&2
+        exit 2
+        ;;
+esac

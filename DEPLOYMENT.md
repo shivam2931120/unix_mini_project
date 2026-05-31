@@ -32,7 +32,7 @@ For a real host install on Ubuntu/Debian, run this from an account with sudo:
 
 ```bash
 make package-deb
-sudo apt install ./dist/unix-utility-suite_1.0.0_$(dpkg --print-architecture).deb
+sudo apt install ./dist/unix-utility-suite_1.1.0_$(dpkg --print-architecture).deb
 unix-toolkit
 ```
 
@@ -46,10 +46,10 @@ make package-submission-artifacts
 
 Expected outputs:
 
-- `dist/unix-utility-suite_1.0.0_<arch>.deb`
-- `dist/unix-utility-suite_1.0.0_<arch>.snap`
+- `dist/unix-utility-suite_1.1.0_<arch>.deb`
+- `dist/unix-utility-suite_1.1.0_<arch>.snap`
 - `dist/unix-toolkit-launcher@shivam2931120.github.io.shell-extension.zip`
-- `dist/unix-utility-suite-vscode-1.0.0.vsix`
+- `dist/unix-utility-suite-vscode-1.1.0.vsix`
 - `dist/io.github.shivam2931120.UnixToolkitLauncher.flatpak`
 
 Optional outputs:
@@ -65,8 +65,8 @@ make docker-build
 3. Create a tag:
 
    ```bash
-   git tag v1.0.0
-   git push origin v1.0.0
+   git tag v1.1.0
+   git push origin v1.1.0
    ```
 
 4. Create a GitHub release and upload everything in `dist/`.
@@ -74,8 +74,8 @@ make docker-build
 With GitHub CLI:
 
 ```bash
-gh release create v1.0.0 dist/* \
-  --title "Unix Utility Suite 1.0.0" \
+gh release create v1.1.0 dist/* \
+  --title "Unix Utility Suite 1.1.0" \
   --notes-file RELEASE_NOTES.md
 ```
 
@@ -112,7 +112,7 @@ make package-snap
 Output:
 
 ```text
-dist/unix-utility-suite_1.0.0_<arch>.snap
+dist/unix-utility-suite_1.1.0_<arch>.snap
 ```
 
 Build with Snapcraft when Snapcraft is installed:
@@ -154,13 +154,13 @@ make package-vscode-extension
 Output:
 
 ```text
-dist/unix-utility-suite-vscode-1.0.0.vsix
+dist/unix-utility-suite-vscode-1.1.0.vsix
 ```
 
 Install locally:
 
 ```bash
-code --install-extension dist/unix-utility-suite-vscode-1.0.0.vsix
+code --install-extension dist/unix-utility-suite-vscode-1.1.0.vsix
 ```
 
 Publish with `vsce` after creating a Visual Studio Marketplace publisher and

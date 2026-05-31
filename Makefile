@@ -1,6 +1,6 @@
 PROJECT := unix-utility-suite
 COMMAND := unix-toolkit
-VERSION ?= 1.0.0
+VERSION ?= 1.1.0
 PREFIX ?= /usr
 CC ?= gcc
 CFLAGS ?= -std=c11 -Wall -Wextra -pedantic -O2
