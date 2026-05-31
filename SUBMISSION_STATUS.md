@@ -1,6 +1,6 @@
 # Submission Status
 
-Last audited: 2026-05-21
+Last audited: 2026-05-31
 
 ## Completed
 
@@ -16,18 +16,18 @@ Last audited: 2026-05-21
   - `io.github.shivam2931120.UnixToolkitLauncher.flatpak`
 - GitHub Actions release workflow passed.
 - `.deb` install-path test passed with `make test-deb-install`.
-- VS Code `.vsix` installed locally.
-- Flatpak bundle built and installed locally.
-- GNOME Shell extension zip built and installed into the user extensions folder.
-- Docker image built and ran the scheduler smoke command.
+- VS Code `.vsix` 1.1.0 installed locally.
+- Flatpak bundle 1.1.0 built and installed locally.
+- GNOME Shell extension version 2 zip built and installed into the user extensions folder.
+- Snap Store revision 3 uploaded for 1.1.0.
 
 ## Not Completed Because Credentials Or Sudo Are Required
 
 - Real system `.deb` install with `sudo apt install`.
 - Local Snap install with `sudo snap install --dangerous --classic`.
-- Snap Store publication.
+- Snap Store public release, pending classic-confinement approval for revision 3.
 - Visual Studio Marketplace publication.
-- extensions.gnome.org publication.
+- extensions.gnome.org upload/review for extension version 2.
 - Flathub publication.
 
 ## Exact Commands For The Owner
