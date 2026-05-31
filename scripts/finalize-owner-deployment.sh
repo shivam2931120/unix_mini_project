@@ -205,8 +205,10 @@ GitHub release is already the primary public distribution:
 
 Snap Store readiness: $snap_status
   snapcraft login
-  snapcraft upload --release=stable "$SNAP"
-  Note: classic confinement requires Snap Store review.
+  snapcraft upload "$SNAP"
+  snapcraft revisions unix-utility-suite
+  After classic-confinement approval:
+  snapcraft release unix-utility-suite <revision> stable
 
 VS Code Marketplace readiness: $vsce_ready
   cd "$ROOT_DIR/platforms/vscode"
@@ -229,8 +231,8 @@ publish_snap_if_ready() {
         return
     fi
 
-    if ask "Upload the Snap artifact to the stable channel now?"; then
-        run_optional "Publishing Snap" snapcraft upload --release=stable "$SNAP"
+    if ask "Upload the Snap artifact for Store review now?"; then
+        run_optional "Uploading Snap for review" snapcraft upload "$SNAP"
     else
         echo "Skipped Snap Store publish."
     fi
